@@ -3,6 +3,10 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 import plotly.graph_objects as go
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+MODEL_PATH = BASE_DIR / "models" / "food_delivery_model.pkl"
 
 st.set_page_config(page_title="RouteCast — Delivery Time Forecast", page_icon="🛵", layout="wide")
 
@@ -109,7 +113,7 @@ st.markdown("""
 # ---------- load model ----------
 @st.cache_resource
 def load_model():
-    with open("../models/food_delivery_model.pkl", "rb") as f:
+    with open(MODEL_PATH, "rb") as f:
         return pickle.load(f)
 
 @st.cache_data
